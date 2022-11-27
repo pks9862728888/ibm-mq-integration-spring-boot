@@ -14,7 +14,7 @@
 	<name>jms-integration</name>
 	<description>Demo project for Spring Boot integration with ibm mq</description>
 	<properties>
-		<java.version>19</java.version>
+		<java.version>11</java.version>
 		<spring-jms.version>4.3.3.RELEASE</spring-jms.version>
 	</properties>
 	<dependencies>
@@ -58,8 +58,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.9</source>
-					<target>1.9</target>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 		</plugins>
