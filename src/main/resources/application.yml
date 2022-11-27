@@ -1,0 +1,11 @@
+# These are the default values configured if you use mq: https://github.com/pks9862728888/mq-container
+ibm:
+  mq:
+    hostName: localhost
+    port: 1414
+    queue-manager: QM1
+    send-queue: DEV.QUEUE.1
+    channel: DEV.ADMIN.SVRCONN
+    conn-name: localhost(1414)
+    user: admin
+    password: passw0rd
