@@ -19,8 +19,9 @@ public class JmsConfig {
     private JmsConfigProps jmsConfigProps;
 
     @Bean
-    public JmsTemplate jmsTemplate() throws JMSException {
-        return new JmsTemplate(getUserCredentialsConnectionFactoryAdapter());
+    @DependsOn(value = {"mQConnectionFactory"})
+    public JmsTemplate jmsTemplate(MQConnectionFactory mqConnectionFactory) {
+        return new JmsTemplate(getUserCredentialsConnectionFactoryAdapter(mqConnectionFactory));
     }
 
     @Bean(name = "mQConnectionFactory")
@@ -47,18 +48,20 @@ public class JmsConfig {
 
     @Bean(name = "userCredentialsConnectionFactoryAdapter")
     @DependsOn(value = {"mQConnectionFactory"})
-    public UserCredentialsConnectionFactoryAdapter getUserCredentialsConnectionFactoryAdapter() {
+    public UserCredentialsConnectionFactoryAdapter getUserCredentialsConnectionFactoryAdapter(
+            MQConnectionFactory connectionFactory) {
         UserCredentialsConnectionFactoryAdapter adapter = new UserCredentialsConnectionFactoryAdapter();
         adapter.setUsername(jmsConfigProps.getUser());
         adapter.setPassword(jmsConfigProps.getPassword());
-        adapter.setTargetConnectionFactory(connectionFactory());
+        adapter.setTargetConnectionFactory(connectionFactory);
         return adapter;
     }
 
     @Bean(name = "jmsListenerContainerFactory")
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() {
+    @DependsOn(value = {"mQConnectionFactory"})
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(MQConnectionFactory mqConnectionFactory) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-        factory.setConnectionFactory(connectionFactory());
+        factory.setConnectionFactory(mqConnectionFactory);
         factory.setSessionTransacted(true);
         factory.setConcurrency("5");
         return factory;
