@@ -21,7 +21,7 @@ public class JmsConfig {
     @Bean
     @DependsOn(value = {"mQConnectionFactory"})
     public JmsTemplate jmsTemplate(MQConnectionFactory mqConnectionFactory) {
-        return new JmsTemplate(getUserCredentialsConnectionFactoryAdapter(mqConnectionFactory));
+        return new JmsTemplate(mqConnectionFactory);
     }
 
     @Bean(name = "mQConnectionFactory")
