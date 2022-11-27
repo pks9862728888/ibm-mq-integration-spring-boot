@@ -14,10 +14,11 @@ public class JmsConfigProps {
     private String hostName;
     private Integer port;
     private String queueManager;
-    private String sendQueue;
     private String channel;
     private String connName;
     private String user;
     private String password;
+    private String sendQueue;
+    private String receiveQueue;
 
 }

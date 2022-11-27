@@ -13,7 +13,7 @@ import javax.jms.JMSException;
 @Slf4j
 public class JmsMessageListener {
 
-    @JmsListener(destination = "DEV.QUEUE.1", containerFactory = "jmsListenerContainerFactory")
+    @JmsListener(destination = "${ibm.mq.receive-queue}", containerFactory = "jmsListenerContainerFactory")
     public void listen(JMSObjectMessage message) {
         try {
             log.info("Jms messageID: {} messageData: {} jmsObjectMessage: {}",

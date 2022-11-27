@@ -4,8 +4,9 @@ ibm:
     hostName: localhost
     port: 1414
     queue-manager: QM1
-    send-queue: DEV.QUEUE.1
     channel: DEV.ADMIN.SVRCONN
     conn-name: localhost(1414)
     user: admin
     password: passw0rd
+    send-queue: DEV.QUEUE.1
+    receive-queue: DEV.QUEUE.1
