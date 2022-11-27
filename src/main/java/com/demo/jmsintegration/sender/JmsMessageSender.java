@@ -2,7 +2,6 @@ package com.demo.jmsintegration.sender;
 
 import com.demo.jmsintegration.config.JmsConfigProps;
 import com.demo.jmsintegration.models.MyMessage;
-import com.ibm.jms.JMSObjectMessage;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.JmsException;

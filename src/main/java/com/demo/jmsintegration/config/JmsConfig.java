@@ -11,7 +11,6 @@ import org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapte
 import org.springframework.jms.core.JmsTemplate;
 
 import javax.jms.JMSException;
-import javax.jms.Session;
 
 @Configuration
 public class JmsConfig {
@@ -21,9 +20,7 @@ public class JmsConfig {
 
     @Bean
     public JmsTemplate jmsTemplate() throws JMSException {
-        JmsTemplate jmsTemplate = new JmsTemplate(getUserCredentialsConnectionFactoryAdapter());
-        jmsTemplate.setSessionAcknowledgeMode(Session.CLIENT_ACKNOWLEDGE);
-        return jmsTemplate;
+        return new JmsTemplate(getUserCredentialsConnectionFactoryAdapter());
     }
 
     @Bean(name = "mQConnectionFactory")
